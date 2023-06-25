@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protected Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="header-title">A M Cloth House</h1>
+    <nav class="header-nav">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="Nug.html">Nug</a></li>
+        <li><a href="Silai.html">Silai</a></li>
+        <li><a href="moti.html">Moti</a></li>
+        <li><a href="employeedata.html">Employee Data</a></li>
+      </ul>
+    </nav>
+  </div>
+  <h1>Welcome, <span id="loggedInUsername"></span></h1>
+  <button id="logoutButton">Logout</button>  
+  <div class="form-container">
+    <iframe id="googleForm" src="https://forms.gle/j6gSf9s1VDmdxMFcA" width="640" height="1319" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <div id="previewSection" class="preview-container">
+      <h2>Submitted Information Preview:</h2>
+      <p><strong>खाते का नाम:</strong> <span id="preview-account-name"></span></p>
+      <p><strong>Note Pad Slip:</strong> <span id="preview-note-pad-slip"></span></p>
+      <p><strong>आइटम का नाम:</strong> <span id="preview-item-name"></span></p>
+      <p><strong>जमा हुई आइटम्स की संख्या:</strong> <span id="preview-item-quantity"></span></p>
+      <p><strong>चेक करने वाले का नाम:</strong> <span id="preview-checker-name"></span></p>
+      <p><strong>Slip Made by:</strong> <span id="preview-slip-maker"></span></p>
+      <button id="printButton" class="btn btn-primary">Print</button>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 A M Cloth House. All rights reserved.</p>
+      <p>Proudly made by Moin Khan</p>
+    </div>
+  </footer>
+  <script src="protected.js"></script>
+  <script>
+    // Wait for the iframe to load
+    window.addEventListener('load', function() {
+      // Get the iframe element
+      var iframe = document.getElementById('googleForm');
+    
+      // Listen for the message event from the iframe
+      window.addEventListener('message', function(event) {
+        // Check if the event origin matches the iframe's URL
+        if (event.origin === iframe.src) {
+          // Get the submitted form data from the event data
+          var formData = event.data;
+    
+          // Display the submitted information in the preview section
+          document.getElementById('preview-account-name').textContent = formData['खाते का नाम'];
+          document.getElementById('preview-note-pad-slip').textContent = formData['Note Pad Slip'];
+          document.getElementById('preview-item-name').textContent = formData['आइटम का नाम'];
+          document.getElementById('preview-item-quantity').textContent = formData['जमा हुई आइटम्स की संख्या'];
+          document.getElementById('preview-checker-name').textContent = formData['चेक करने वाले का नाम'];
+          document.getElementById('preview-slip-maker').textContent = formData['Slip Made by'];
+    
+          // Show the preview section
+          document.getElementById('previewSection').style.display = 'block';
+        }
+      });
+    
+      // Listen for the click event of the print button
+      var printButton = document.getElementById('printButton');
+      printButton.addEventListener('click', function() {
+        // Print the preview section
+        window.print();
+      });
+    });
+  </script>
+</body>
+
+</html>

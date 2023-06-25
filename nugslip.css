@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #container {
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  #slip-number {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  #search-button {
+    padding: 5px 10px;
+  }
+  
+  #output {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
