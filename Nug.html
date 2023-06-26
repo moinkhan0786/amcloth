@@ -6,6 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protected Page</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .nugcontainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .nugcontainer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .nugcontainer li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .nugcontainer li a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .nugcontainer li a:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,20 +52,15 @@
     </nav>
   </div>
   <h1>Welcome, <span id="loggedInUsername"></span></h1>
-  <button id="logoutButton">Logout</button>  
-  <div class="form-container">
-    <iframe id="googleForm" src="https://forms.gle/j6gSf9s1VDmdxMFcA" width="640" height="1319" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <div id="previewSection" class="preview-container">
-      <h2>Submitted Information Preview:</h2>
-      <p><strong>खाते का नाम:</strong> <span id="preview-account-name"></span></p>
-      <p><strong>Note Pad Slip:</strong> <span id="preview-note-pad-slip"></span></p>
-      <p><strong>आइटम का नाम:</strong> <span id="preview-item-name"></span></p>
-      <p><strong>जमा हुई आइटम्स की संख्या:</strong> <span id="preview-item-quantity"></span></p>
-      <p><strong>चेक करने वाले का नाम:</strong> <span id="preview-checker-name"></span></p>
-      <p><strong>Slip Made by:</strong> <span id="preview-slip-maker"></span></p>
-      <button id="printButton" class="btn btn-primary">Print</button>
-    </div>
-  </div>
+  <button id="logoutButton">Logout</button> <br>
+<div class="nugcontainer">
+<ul>
+  <li><a href="https://script.google.com/macros/s/AKfycbwtXDTTzFS737ko_nnqzC9Oc1gZD5yj0yuYIi6O9YPRTefRwM5I13VUmhQUW741Zzy-/exec" target="_self">ND SLIP</a></li>
+  
+  <li><a href="https://script.google.com/macros/s/AKfycbw5cL1txwyvPf247Ns7TVHtOvCJg88NDt1wKV6KyREivw7OqpJlR8val9fKW4mbD16y/exec" target="_self">NJ SLIP</a></li>
+</ul>
+</div>
+ 
   <footer class="footer">
     <div class="container">
       <p>&copy; 2023 A M Cloth House. All rights reserved.</p>
@@ -43,40 +68,6 @@
     </div>
   </footer>
   <script src="protected.js"></script>
-  <script>
-    // Wait for the iframe to load
-    window.addEventListener('load', function() {
-      // Get the iframe element
-      var iframe = document.getElementById('googleForm');
-    
-      // Listen for the message event from the iframe
-      window.addEventListener('message', function(event) {
-        // Check if the event origin matches the iframe's URL
-        if (event.origin === iframe.src) {
-          // Get the submitted form data from the event data
-          var formData = event.data;
-    
-          // Display the submitted information in the preview section
-          document.getElementById('preview-account-name').textContent = formData['खाते का नाम'];
-          document.getElementById('preview-note-pad-slip').textContent = formData['Note Pad Slip'];
-          document.getElementById('preview-item-name').textContent = formData['आइटम का नाम'];
-          document.getElementById('preview-item-quantity').textContent = formData['जमा हुई आइटम्स की संख्या'];
-          document.getElementById('preview-checker-name').textContent = formData['चेक करने वाले का नाम'];
-          document.getElementById('preview-slip-maker').textContent = formData['Slip Made by'];
-    
-          // Show the preview section
-          document.getElementById('previewSection').style.display = 'block';
-        }
-      });
-    
-      // Listen for the click event of the print button
-      var printButton = document.getElementById('printButton');
-      printButton.addEventListener('click', function() {
-        // Print the preview section
-        window.print();
-      });
-    });
-  </script>
 </body>
 
 </html>
